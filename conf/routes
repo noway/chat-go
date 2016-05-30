@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+module:testrunner
+
+# Login
+# GET     /                                       Application.Index
+# GET     /demo                                   Application.EnterDemo
+
+# Refresh demo
+GET     /refresh                                Refresh.Index
+GET     /refresh/room                           Refresh.Room
+POST    /refresh/room                           Refresh.Say
+GET     /refresh/room/leave                     Refresh.Leave
+
+# Long polling demo
+GET     /                                       LongPolling.Room
+GET     /page                                   LongPolling.PrevPage
+GET     /messages                               LongPolling.WaitMessages
+GET     /load                                   LongPolling.LoadPage
+POST    /messages                               LongPolling.Say
+GET     /leave                                  LongPolling.Leave
+
+GET     /users/register                 Users.Register
+GET     /users/login                    Users.Login
+GET     /users/state                    Users.State
+GET     /users/online                   Users.Online
+GET     /users/logout                   Users.Logout
+
+# WebSocket demo
+GET     /websocket/room                         WebSocket.Room
+WS      /websocket/room/socket                  WebSocket.RoomSocket
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
