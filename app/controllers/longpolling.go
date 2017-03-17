@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
 	"chat-go/app/chatroom"
-	"unicode/utf8"
+	"github.com/revel/revel"
 	"log"
+	"unicode/utf8"
 )
 
 type LongPolling struct {
@@ -34,32 +34,29 @@ func ReturnAppropriateResult(IsModerator bool, actualEvents []chatroom.Event) in
 	}
 }
 
-
 func (c LongPolling) Room(user string) revel.Result {
-	
-	return c.Render(user)
+
+	return c.Render()
 }
 
 func (c LongPolling) Say(user, message string) revel.Result {
 
-	
-	if utf8.RuneCountInString(message) > messageMaxLength{
+	if utf8.RuneCountInString(message) > messageMaxLength {
 		return nil
 	}
-	if utf8.RuneCountInString(message) < messageMinLength{
+	if utf8.RuneCountInString(message) < messageMinLength {
 		return nil
 	}
-	
+
 	chatroom.Say(c.Session.Id(), user, message)
 	return nil
 }
-
 
 func (c LongPolling) PrevPage() revel.Result {
 
 	var page chatroom.Page
 
-	page.PrevPage = chatroom.Send_request_for_page_count();
+	page.PrevPage = chatroom.Send_request_for_page_count()
 
 	return c.RenderJson(page)
 }
@@ -73,18 +70,18 @@ func (c LongPolling) WaitMessages(last uint64) revel.Result {
 		log.Println("Ishere unset")
 	}()
 	var events []chatroom.Event
-	for _, event := range subscription.Archive {	
+	for _, event := range subscription.Archive {
 		if last < event.Index {
 			events = append(events, event)
 		}
 	}
-			
+
 	if len(events) > 0 {
 		return c.RenderJson(ReturnAppropriateResult(chatroom.AllFuckingSessions[c.Session.Id()].IsModerator, events))
 	}
 
 	chatroom.AllFuckingSessions[c.Session.Id()].IsHere = true
-		log.Println("Ishere set")
+	log.Println("Ishere set")
 
 	event := <-subscription.New
 	return c.RenderJson(ReturnAppropriateResult(chatroom.AllFuckingSessions[c.Session.Id()].IsModerator, []chatroom.Event{event}))
@@ -94,13 +91,13 @@ func (c LongPolling) LoadPage(last uint64, page uint64) revel.Result {
 	var events []chatroom.Event
 
 	if page > 0 {
-		events = chatroom.Send_request_for_page(page);
+		events = chatroom.Send_request_for_page(page)
 		if len(events) != perPage {
-			return c.RenderJson(&chatroom.Status{1, "Wrong page",0})
+			return c.RenderJson(&chatroom.Status{1, "Wrong page", 0})
 		}
 		return c.RenderJson(ReturnAppropriateResult(chatroom.AllFuckingSessions[c.Session.Id()].IsModerator, events))
 	} else {
-		events = chatroom.Send_request_for_page(0);
+		events = chatroom.Send_request_for_page(0)
 		return c.RenderJson(ReturnAppropriateResult(chatroom.AllFuckingSessions[c.Session.Id()].IsModerator, events))
 	}
 }
