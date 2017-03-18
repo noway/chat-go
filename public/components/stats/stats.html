@@ -1,0 +1,17 @@
+<div id='stats'>
+
+	<span>Online: </span>
+	<span class='users'>
+		<span ng-repeat='u in usersOnline' class='nickname nickname-logged-in' ng-class='{ "you": isMe(u), "to-you": isToMe(u) }'>
+			{{ u.N }}
+		</span>
+	</span> 
+	
+	<span>Guests: </span> 
+	<span class='guests'>
+		{{ guestsOnline }}
+	</span>
+	
+	<span>RSS</span>
+	<span class='memory-rss'>{{ $ctrl.memoryRss }}</span>
+</div>

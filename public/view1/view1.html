@@ -1,0 +1,13 @@
+<div class='message' ng-repeat='e in events'>
+	<h2 class='nickname' ng-class='{ 
+		user: e.L, 
+		mod: e.A, 
+		mine: isMine(e), 
+		mention: isMention(e) }'>
+		{{ name(e) }}
+	</h2>
+	<p>
+		<span class='date'>{{ date(e) }}</span>
+		{{ e.M }}
+	</p>
+</div>
