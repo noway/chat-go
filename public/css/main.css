@@ -10,48 +10,6 @@ html, body {
     text-align: center;
 }
 
-#signin {
-    margin: 10px auto;
-    width: 400px;
-    border: 8px solid #333;
-    padding: 20px;
-    background: #fff;
-    text-align: left;
-}
-
-#signin p {
-    margin: 5px 0;
-}
-
-#signin label {
-    font-size: 14px;
-    display: block;
-    width: 150px;
-    text-align: right;
-    float: left;
-    margin-right: 5px;
-    padding-top: 2px;
-}
-
-#signin #nick {
-    margin-left: 10px;
-    width: 200px;
-}
-
-#signin #enter {
-    display: block;
-    margin: 10px 0 0 160px;
-}
-
-#signin .error {
-    background: #c00;
-    margin: 0 0 10px 0;
-    padding: 5px;
-    text-align: center;
-    color: #fff;
-    font-size: 14px;
-}
-
 h1 {
     background: #111;
     margin: 0;
@@ -67,7 +25,7 @@ h1 a {
     color: lightblue;
 }
 
-#thread {
+.thread {
     position: fixed;
     top: 50px;
     left: 14px;
@@ -106,7 +64,7 @@ h1 a {
     margin: 0 0 0 110px;
 }
 
-.message.you * {
+.message.mine * {
     background: #FFFFCC;
 }
 
@@ -128,15 +86,17 @@ h1 a {
     padding-left: 115px;
 }
 
-#newMessage {
+footer {
     position: fixed;
     left: 14px;
     right: 14px;
     bottom: 30px;
     height: 60px;
 }
-
-#newMessage #message {
+.date {
+    color: grey;
+}
+footer #message {
     width: 70%;
     padding: 5px;
 }
@@ -153,24 +113,25 @@ h1 a {
 .page-link:active{
     color: red;
 }
-.message h2.nickname-logged-in{
+.message h2.user{
     text-decoration: underline;
 }
-.nickname-logged-in{
+.user{
     text-decoration: underline;
 }
-.message h2.nickname-moderator{
+.message h2.mod{
     color:green;
 }
-.message h2.to-you{
+.message h2.mention{
     color:red;
 }
-.nickname-moderator{
+.mod{
     color:green;
 }
-.you{
+.mine{
     color:royalBlue!important;
 }
+
 noscript,.nocookie{
     background: #b44;
     color:white;
