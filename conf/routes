@@ -15,7 +15,6 @@ module:testrunner
 # GET     /refresh/room/leave                     Refresh.Leave
 
 # Long polling demo
-GET     /                                       Static.Serve("app/views/LongPolling/Room.html")
 GET     /page                                   LongPolling.PrevPage
 GET     /messages                               LongPolling.WaitMessages
 GET     /load                                   LongPolling.LoadPage
@@ -33,5 +32,6 @@ GET     /websocket/room                         WebSocket.Room
 WS      /websocket/room/socket                  WebSocket.RoomSocket
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/*filepath                       Static.Serve("public")
+# GET     /public/*filepath                       Static.Serve("public")
 
+GET     /*filepath                                       Static.Serve("public")
