@@ -1,12 +1,14 @@
 <div class="profile">
-	<div id="login-form">
-		<input type="text" name="name" id="loginname">
-		<input type="password" name="password" id="password">
-		<input type="submit" name="login" value="login" id="login">
-		<input type="submit" name="register" value="register" id="register">
-	</div>
+	<form novalidate>
+		<div class="login-form" ng-if='profile.user == ""'>
+			<input type="text" name="name" placeholder="User name" ng-model="user.name">
+			<input type="password" name="password" placeholder="Password" ng-model="user.password">
+			<input type="submit" name="login" value="Login" ng-click="login(user)">
+			<input type="submit" name="register" value="Register" ng-click="register(user)">
+		</div>
+	</form>
 
-	<div id="logout-form">
-		<a href="javascript:void(0)" ng-onclick="logout()">logout</a> 
+	<div class="logout-form" ng-if='profile.user'>
+		<a href="javascript:void(0)" ng-click="logout()">logout</a> 
 	</div>
 </div>

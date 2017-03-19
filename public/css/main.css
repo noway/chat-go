@@ -98,41 +98,41 @@ footer {
 }
 footer #message {
     width: 70%;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
-.page-link{
+.page-link {
     background: lightGrey;
     border:1px grey;
     padding:4px;
     color: royalBlue;
 }
-.page-link:hover{
+.page-link:hover {
     color: blue;
 }
-.page-link:active{
+.page-link:active {
     color: red;
 }
-.message h2.user{
+.message h2.user {
     text-decoration: underline;
 }
-.user{
+.user {
     text-decoration: underline;
 }
-.message h2.mod{
+.message h2.mod {
     color:green;
 }
-.message h2.mention{
+.message h2.mention {
     color:red;
 }
-.mod{
+.mod {
     color:green;
 }
-.mine{
+.mine {
     color:royalBlue!important;
 }
 
-noscript,.nocookie{
+noscript, .nocookie {
     background: #b44;
     color:white;
     border:1px solid black;

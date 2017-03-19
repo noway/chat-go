@@ -4,7 +4,7 @@ angular.module('myApp.messenger', [])
 
 .component('messenger', {
   templateUrl: 'components/messenger/messenger.html',
-  controller: function MessengerController() {
+  controller: function messengerController() {
     
   },
   bindings: {

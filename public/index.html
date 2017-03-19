@@ -16,12 +16,12 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-
+<!-- 
   <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/page">page</a></li>
     <li><a href="#!/view2">view2</a></li>
   </ul>
-
+ -->
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -29,7 +29,7 @@
   <div class="nocookie" style="display: none">Don't fuck with me and enable cookies.</div>
 
   <header>
-    <pagination></pagination>
+    <paginator></paginator>
   </header>
   
   <div ng-view class="thread"></div>
@@ -52,12 +52,16 @@
   <script src="components/paginator/paginator.js"></script>
   <script src="components/messenger/messenger.js"></script>
   
+  <script src="dataServices/stateService.js"></script>
+  <script src="services/profileService.js"></script>
+  <script src="services/statsService.js"></script>
+  
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
+  <script src="page/page.js"></script>
+  <!-- 
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
-  
+   -->
 </body>
 </html>
