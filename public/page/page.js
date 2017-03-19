@@ -28,7 +28,6 @@ angular.module('myApp.page', ['ngRoute'])
     if ($routeParams.page == 0) {
       $scope.pollMessages();
     }
-
   };
 
   $scope.getMessages = () => $http.get('/load?page=' +  $routeParams.page).then(res => res.data).then($scope.processMessages);

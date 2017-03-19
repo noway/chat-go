@@ -6,8 +6,5 @@ angular.module('myApp.paginator', [])
   templateUrl: 'components/paginator/paginator.html',
   controller: function PaginatorController() {
     
-  },
-  bindings: {
-    // paginator: '='
   }
 });

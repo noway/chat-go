@@ -32,8 +32,5 @@ angular.module('myApp.messenger', [])
 
     };
 
-  }],
-  bindings: {
-  // messenger: '='
-  }
+  }]
 });
