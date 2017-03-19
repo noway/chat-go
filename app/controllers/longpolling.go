@@ -34,12 +34,12 @@ func ReturnAppropriateResult(IsModerator bool, actualEvents []chatroom.Event) in
 	}
 }
 
-func (c LongPolling) Room(user string) revel.Result {
+func (c LongPolling) Room(name string) revel.Result {
 
 	return c.Render()
 }
 
-func (c LongPolling) Say(user, message string) revel.Result {
+func (c LongPolling) Say(name, message string) revel.Result {
 
 	if utf8.RuneCountInString(message) > messageMaxLength {
 		return nil
@@ -48,7 +48,7 @@ func (c LongPolling) Say(user, message string) revel.Result {
 		return nil
 	}
 
-	chatroom.Say(c.Session.Id(), user, message)
+	chatroom.Say(c.Session.Id(), name, message)
 	return nil
 }
 
@@ -102,7 +102,7 @@ func (c LongPolling) LoadPage(last uint64, page uint64) revel.Result {
 	}
 }
 
-func (c LongPolling) Leave(user string) revel.Result {
-	//chatroom.Leave(user)
+func (c LongPolling) Leave(name string) revel.Result {
+	//chatroom.Leave(name)
 	return c.Redirect(Application.Index)
 }

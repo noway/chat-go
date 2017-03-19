@@ -14,4 +14,8 @@ angular.module('myApp.statsService', ['myApp.stateService'])
 		this.usersOnline = data.filter(val => (val || {}).N);
 		this.guestsCount = data.reduce((acc,  val) => (val || {}).N == '' ? acc + 1 : acc, 0);
 	}));
+	
+	this.updateSendMessage = () => {
+		// noop
+	}
 }]);
