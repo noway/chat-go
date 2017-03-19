@@ -96,7 +96,7 @@ footer {
 .date {
     color: grey;
 }
-footer #message {
+footer messenger input[name="message"] {
     width: 70%;
     /* padding: 5px; */
 }

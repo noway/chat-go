@@ -1,5 +1,6 @@
-<div id="messenger">
-	<input type="text" id="name">
-	<input type="text" id="message" autocomplete="off" autofocus maxlength="140">
-	<input type="submit" value="send" id="send">
-</div>
+<form novalidate>
+	<input type='text' name="name" placeholder="User name" tabindex="1" ng-if='profile.user == ""' ng-model='event.name'>
+	<input type='text' name="message" placeholder="Message" autocomplete='off' autofocus maxlength='140' ng-model='event.message'>
+	<input type='submit' value='Send' ng-click='send(event)'>
+</form>
+
