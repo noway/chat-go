@@ -823,12 +823,12 @@ func chatroom() {
 				AllFuckingSessions[ch.Sid].Nickname = ch.Nickname;
 			}
 
-			if Ip_hash_map[ip].LastMessageTimestamp + cooldownTimeSec < cur_time  {
+			// if Ip_hash_map[ip].LastMessageTimestamp + cooldownTimeSec < cur_time  {
 				AllFuckingSessions[ch.Sid].LastMessageTimestamp = cur_time
 				Ip_hash_map[ip].LastMessageTimestamp = cur_time
 
 				publish <- newEvent(0, session.Id, session.Ip, session.Nickname, session.IndexNickname, session.IsModerator, session.IsLoggedIn, ch.Message)
-			}
+			// }
 
 		case ch := <-give_me_pages:
 
