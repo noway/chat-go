@@ -24,3 +24,31 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.stats .users {
+  display: inline;
+}
+
+.stats, .stats .users {
+  list-style: none;
+  margin:0;
+  padding:0;
+  font-size: 0%;
+}
+.stats > li, .stats .users > li {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+.stats > li > span, .stats .users > li > span {
+  font-size: initial;
+}
+.stats > li + li:before {
+  content: ". ";
+  font-size: initial;
+}
+
+.stats .users > li + li:before {
+  content: ", ";
+  font-size: initial;
+}

@@ -1,17 +1,19 @@
-<div id='stats'>
+<ul class='stats'>
 
-	<span class='users' ng-if='stats.usersOnline.length'>
+	<li class='users' ng-if='stats.usersOnline.length'>
 		<span>Online: </span>
-		<span ng-repeat='u in stats.usersOnline' class='nickname nickname-logged-in' ng-class='{ mod: u.A }'>
-			{{ u.N }}
-		</span>
-	</span> 
-	
-	<span class='guests'>
+		<ul class='users'>
+			<li ng-repeat='u in stats.usersOnline' class='nickname nickname-logged-in' ng-class='{ mod: u.A }'>
+				<span>{{ u.N }}</span>
+			</ul>
+		</li>
+	</li>
+	<li class='guests'>
 		<span>Guests: </span> 
 		<span>{{ stats.guestsCount }}</span>
-	</span>
-	
-	<span>RSS: </span>
-	<span class='memory-rss'>{{ stats.memoryRss }}</span>
-</div>
+	</li>
+	<li class='memory-rss'>
+		<span>RSS: </span>
+		<span> {{ stats.memoryRss }}</span>
+	</li>
+</ul>
