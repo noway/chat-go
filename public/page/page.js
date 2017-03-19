@@ -1,28 +1,28 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.page', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
+  $routeProvider.when('/page/:page', {
+    templateUrl: 'page/page.html',
+    controller: 'PageCtrl'
+  })
 }])
 
-.controller('View1Ctrl', ['$scope', '$http', function ($scope, $http) {
-	var page = 0;
-	page = parseInt(location.hash.substr(1), 10) || 0;
+.controller('PageCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+	// var page = 0;
+	// page = parseInt(location.hash.substr(1), 10) || 0;
 	
 	$scope.last = 0;
 	$scope.events = [];
 	$scope.user = '';
 
 	$scope.getMessages = function () {
-		$http.get('/load?page=' +  page).then(res => {
+		$http.get('/load?page=' +  $routeParams.page).then(res => {
 			angular.copy(res.data, $scope.events);
 			res.data.map(e => $scope.last = e.X);
 			
-			if (page == 0) {
+			if ($routeParams.page == 0) {
 				$scope.pollMessages();
 			}
 		});
