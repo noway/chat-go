@@ -23,9 +23,9 @@ angular.module('myApp.messenger', [])
           'Content-Type': 'application/x-www-form-urlencoded' // Note the appropriate header
         }
       }).then(res => {
-        if (res.data.Code != 0) {
-          return alert(`Exit code: ${res.data.Code}. Error message: ${res.data.Message}`);
-        }
+        // if (res.data.Code != 0) {
+        //   return alert(`Exit code: ${res.data.Code}. Error message: ${res.data.Message}`);
+        // }
         $scope.event.message = '';
         statsService.updateSendMessage();
       });

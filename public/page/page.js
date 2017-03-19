@@ -9,66 +9,44 @@ angular.module('myApp.page', ['ngRoute'])
   })
 }])
 
-.controller('PageCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
-	// var page = 0;
-	// page = parseInt(location.hash.substr(1), 10) || 0;
-	
-	$scope.last = 0;
-	$scope.events = [];
-	$scope.user = '';
+.controller('PageCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {  
+  $scope.last = 0;
+  $scope.events = [];
+  $scope.shownEvents = {};
+  $scope.user = '';
+  
+  $scope.processMessages = events => {
 
-	$scope.getMessages = function () {
-		$http.get('/load?page=' +  $routeParams.page).then(res => {
-			angular.copy(res.data, $scope.events);
-			res.data.map(e => $scope.last = e.X);
-			
-			if ($routeParams.page == 0) {
-				$scope.pollMessages();
-			}
-		});
-	};
+    events.map(e => {
+      if (!$scope.shownEvents[e.X]) {
+        $scope.events.push(e);
+        $scope.shownEvents[e.X] = e;
+        $scope.last = e.X >= $scope.last ? e.X : $scope.last; 
+      }
+    });
+    
+    if ($routeParams.page == 0) {
+      $scope.pollMessages();
+    }
 
-	$scope.getState = function () {
-		$http.get('/users/state').then(e => {
-			
-			$scope.memoryRss = e.RSS;
-			// if (e.Message !=  ''){
-			// 	$scope.user = false;
-			// 	$('#logout-form').show()
-			// 	$('#name').hide()
-			// } else {
-			// 	$scope.user = e.Message;
-			// 	$('#login-form').show()
-			// }
-			$scope.user = e.Message;
-			// getMessages();
-		});
-	};
-	
+  };
 
-	$scope.date = function(event) {
-		return (new Date(event.T*1000)).toLocaleString() 
-	};
-	
-	$scope.name = function(event) {
-		return event.N == '' ? 'Аноним' : event.N;	
-	};
-	
-	$scope.isMine = function(event) {
-		return event.N == $scope.user && event.L;
-	};
-	$scope.isMention = function(event) {
-		return event.M.indexOf($scope.user) >= 0 && $scope.user.length;
-	};
-	
-	$scope.pollMessages = function () {
-		$http.get('/messages?last=' + $scope.last).then(res => {
-			angular.copy($scope.events, res.data);
-			$scope.pollMessages();
-		});
-	};
-	$scope.getState();
-	$scope.getMessages();
+  $scope.getMessages = () => $http.get('/load?page=' +  $routeParams.page).then(res => res.data).then($scope.processMessages);
+  $scope.pollMessages = () => $http.get('/messages?last=' + $scope.last).then(res => res.data).then($scope.processMessages);
+
+  $scope.getState = () => $http.get('/users/state').then(e => {
+    $scope.memoryRss = e.RSS;
+    $scope.user = e.Message;
+  });
+
+  $scope.date = event => (new Date(event.T*1000)).toLocaleString();
+  $scope.name = event => event.N == '' ? 'Аноним' : event.N;
+  $scope.isMine = event => event.N == $scope.user && event.L;
+  $scope.isMention = event => event.M.indexOf($scope.user) >= 0 && $scope.user.length;
+  
+
+  $scope.getState();
+  $scope.getMessages();
 
 
 }]);
